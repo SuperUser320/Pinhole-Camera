@@ -22,6 +22,7 @@ boolean lastExpose;
 const float focalLen = 50.8; //mm
 const float pinHole  = 0.28; //mm
 const float waveLen  = .00065; //mm (red)
+const float meterConst = 8.0;
 //  Image variables
 float filmIso = 25.0;
 float exposureTime;
@@ -55,7 +56,7 @@ float calcExposure(float iso) {
   
   fstop = focalLen / pinHole;
   
-  time = (fstop * fstop) / (filmIso * getLux());
+  time = ((fstop * fstop) * meterConst)/ (filmIso * getLux());
   Serial.print("Exp. time: ");
   Serial.println(time);
   
